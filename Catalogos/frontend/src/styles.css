@@ -1,0 +1,157 @@
+:root {
+  --fondo: #0f1b2d;
+  --superficie: #17263d56;
+  --borde: #243653;
+  --acento: #ff3d3d;
+  --amarillo: #ffd23f;
+  --texto: #f2f5fa;
+  --suave: #8fa3bf;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "Work Sans", system-ui, sans-serif;
+}
+
+h1, h2, h3, .navbar-brand {
+  font-family: "Anton", Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+a { color: var(--amarillo); }
+.text-secondary { color: var(--suave) !important; }
+
+/* Barra */
+.barra .barra {
+  background: rgba(15, 27, 45, 0);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--borde);
+}
+.barra .navbar-brand { color: var(--amarillo); font-size: 1.6rem; }
+.barra .nav-link.active { color: var(--amarillo); }
+
+/* Botón principal */
+.btn-acento { background: var(--acento); border-color: var(--acento); color: #fff; font-weight: 600; }
+.btn-acento:hover, .btn-acento:focus { background: #e62e70; border-color: #e62e70; color: #fff; }
+
+/* Formularios */
+.form-control, .form-select {
+  background: var(--superficie);
+  border-color: #2a3f61;
+  color: var(--texto);
+}
+.form-control:focus, .form-select:focus {
+  background: var(--superficie);
+  color: var(--texto);
+  border-color: var(--acento);
+  box-shadow: 0 0 0 0.2rem rgba(255, 61, 129, 0.25);
+}
+.caja-formulario { max-width: 460px; }
+
+/* Portada del catálogo */
+.hero { padding: clamp(2.5rem, 8vw, 5rem) 0 2rem; }
+.hero h1 { font-size: clamp(3rem, 12vw, 7rem); line-height: 0.95; text-transform: uppercase; margin: 0; }
+.hero h1 span { color: var(--acento); }
+.hero p { color: var(--suave); max-width: 46ch; margin-top: 1rem; }
+
+/* Tarjetas de banda */
+.tarjeta-banda {
+  display: block;
+  height: 100%;
+  background: var(--superficie);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+.tarjeta-banda:hover { transform: translateY(-4px); color: inherit; }
+.tarjeta-banda:focus-visible, .voltear:focus-visible, .item-admin:focus-visible {
+  outline: 3px solid var(--amarillo);
+  outline-offset: 2px;
+}
+.portada { aspect-ratio: 1 / 1; width: 100%; object-fit: cover; display: block; }
+.portada-vacia {
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Anton", sans-serif; font-size: 5rem; color: rgba(255, 255, 255, 0.85);
+}
+.tarjeta-banda .info { padding: 0.9rem 1rem 1.1rem; }
+.tarjeta-banda h3 { font-size: 1.4rem; margin: 0 0 0.25rem; }
+.etiqueta {
+  display: inline-block; background: var(--acento); color: #fff;
+  font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.55rem;
+  border-radius: 99px; margin-bottom: 0.5rem;
+}
+
+/* Detalle de banda */
+.enlace-volver::before { content: "← "; }
+.titulo-banda { font-size: clamp(2.5rem, 8vw, 4.5rem); text-transform: uppercase; margin: 0.25rem 0; }
+.historia { font-size: 1.1rem; line-height: 1.65; max-width: 65ch; white-space: pre-line; }
+
+/* Tarjeta de canción que se voltea */
+.voltear { perspective: 1000px; cursor: pointer; border-radius: 0.5rem; }
+.voltear-interior {
+  position: relative; height: 12rem;
+  transition: transform 0.5s; transform-style: preserve-3d;
+}
+.voltear.volteada .voltear-interior { transform: rotateY(180deg); }
+.cara {
+  position: absolute; inset: 0; padding: 1.1rem;
+  border-radius: 0.5rem; backface-visibility: hidden;
+  display: flex; flex-direction: column; justify-content: center; gap: 0.5rem;
+}
+.cara h3 { font-size: 1.6rem; margin: 0; }
+.frente { background: var(--superficie); border: 1px solid var(--borde); }
+.atras {
+  background: #d62828; color: #fff;
+  transform: rotateY(180deg); overflow-y: auto; justify-content: flex-start;
+}
+
+/* Administración */
+.lista-admin { background: var(--superficie); border-radius: 0.5rem; overflow: hidden; }
+.item-admin {
+  display: flex; flex-direction: column; width: 100%; text-align: left;
+  background: transparent; color: var(--texto); border: 0;
+  border-bottom: 1px solid var(--borde); padding: 0.75rem 1rem;
+}
+.item-admin:last-child { border-bottom: 0; }
+.item-admin.activo { background: #1f3354; border-left: 4px solid var(--acento); }
+.panel-admin { background: var(--superficie); border-radius: 0.5rem; padding: 1.25rem; }
+.fila-cancion {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+  padding: 0.6rem 0; border-bottom: 1px solid var(--borde);
+}
+.fila-cancion:last-child { border-bottom: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta-banda, .voltear-interior { transition: none; }
+}
+.enlace-cancion { flex-shrink: 0; border-radius: 0.4rem; }
+.imagen-cancion {
+  width: 4.5rem; height: 4.5rem;
+  object-fit: cover; border-radius: 0.4rem;
+  display: block;
+  transition: transform 0.15s ease;
+}
+.enlace-cancion:hover .imagen-cancion { transform: scale(1.06); }
+.enlace-cancion:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .imagen-cancion { transition: none; }
+}.video-global {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.capa-global {
+  position: fixed; inset: 0;
+  background: rgba(15, 27, 45, 0);
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-global { display: none; }
+}
